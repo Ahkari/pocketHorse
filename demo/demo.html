@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CASTER-用声音创造价值</title>
+	<meta content="这里写关键字" name="Keywords">
+	<meta content="这里写介绍" name="Description">
+	<link type="text/css" rel="stylesheet" href="./demo.css">
+</head>
+<body>
+
+<!-- 搜索和轮播以及公告 -->
+<div class="header w1100 margin-center">
+	<!-- 公共轮播图, 类为common-searchInput,样式在header.css中 -->
+	<div class="common-carouselImage">
+		<a class="carousLeftArr pa"><i class="iconB iconLeft"></i></a>
+		<div class="imageArea">
+			<img src="./image/carouselImage1.png">
+			<!-- <img>
+			<img> -->
+		</div>
+		<a class="carousRightArr pa"><i class="iconB iconRight"></i></a>
+	</div>
+</div>
+<script type="text/javascript" src="../libs/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../libs/jquery.easing.min.js"></script>
+<script type="text/javascript" src="../pocketHorse.js"></script>
+<script>
+//dom ready
+(function($){
+	$('.common-carouselImage').pocketHorse({
+		dotControl : false ,
+		blockControl : true ,
+		isControlerHide : true ,
+		stayTime : 3000 ,
+		transTime : 1500 , 
+		transDirection : 'right' , //left,right,up,down,none
+		transFunction : 'push' , //slide滑动，push推开，transparency透明
+		transEasying : 'easeOutExpo' //动画曲线,default是swing,liner两种,其余的可以支持jquery.easing插件
+	}
+	,
+	[
+		'./image/carouselImage1.png',
+		'./image/carouselImage2.png',
+		'./image/carouselImage3.png',
+		'./image/carouselImage4.png',
+		'./image/carouselImage5.png'
+	]
+	);
+
+})(jQuery)
+</script>
+</body>
+</html>
