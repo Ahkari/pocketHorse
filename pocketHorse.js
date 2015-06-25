@@ -52,116 +52,41 @@ $.fn.extend({
 		$('.imageArea img#pocketHorse1').addClass('nextHourse') ;
 		//全体hidden
 		$('.imageArea').find('img').css({'position':'absolute','visibility': 'hidden'});
+		//点阵生成
+		if (option.dotControl){
+			var dotDom = '<div class="dotWrap">'
+			for (var i=0;i<imgSrcLength;i++){
+				dotDom += '<span class="dot'+i+'"></span>' ;
+			};
+			dotDom += '</div>' ;
+			$('.common-carouselImage').append(dotDom);
+			$('.common-carouselImage .dotWrap').css({'width':'100%','height':'20px','position':'absolute','bottom':'0px','text-align':'center','z-index':'3'});
+			$('.common-carouselImage .dotWrap>span').css({'background':'url(./image/dotGray.png) 0px 0px','width':'10px','height':'11px','display':'inline-block','margin-right':'2px','margin-left':'2px','cursor':'pointer'});
+		}
+		if (option.blockControl){
+			$('.common-carouselImage .carousLeftArr,.common-carouselImage .carousLeftArr').show();
+		}else{
+			$('.common-carouselImage .carousLeftArr,.common-carouselImage .carousLeftArr').hide();
+		}
 		//根据动画方式初始化第一个和第二个
 		var initNowHourse ; 
-		var initNextHouse ; 
-		switch (option.transDirection){
-			case 'left':
-				initNowHourse = 0 + 'px' ;
-				initNextHouse = imgWidth + 'px';
-				break;
-			case 'right':
-				initNowHourse = 0 + 'px' ;
-				initNextHouse = -(imgWidth) + 'px';
-				break;
-			// case 'up':
-			// 	$('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
-			// 	$('.imageArea img.nextHourse').css({'top':imgHeight+'px','z-index':2,'visibility':'visible'});
-			// 	break;
-			// case 'down':
-			// 	$('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
-			// 	$('.imageArea img.nextHourse').css({'left':-(imgHeight)+'px','z-index':2,'visibility':'visible'});
-			// 	break;
-			// case 'none':
-		 //    	$('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
-			// 	$('.imageArea img.nextHourse').css({'left':0,'z-index':2,'visibility':'visible'});
-			// 	break;
-			// default:
-			//     $('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
-			// 	$('.imageArea img.nextHourse').css({'left':0,'z-index':2,'visibility':'visible'});
+		var initNextHouse ;
+		if (option.dotControl){
+			$('.common-carouselImage .dotWrap .dot'+0).css({'background':'url(./image/dotGray.png) -12px 0px'}) ;
 		}
-		$('.imageArea img.nowHourse').css({'left':initNowHourse,'z-index':1,'visibility':'visible'});
-		$('.imageArea img.nextHourse').css({'left':initNextHouse,'z-index':2,'visibility':'visible'});
-
-		//幻灯片动画主控制方法，第一个参数是配置值
-		var hourseRunning = function(option,positive){
-			//动画初始化，元素初处理，这里只在逆向点击时触发
-			var hourseWait = function(){
-				var $nowEle = $('img.nowHourse');
-				var $nextEle = $('img.nextHourse');
-				if(positive){
-					
-				}else{
-					if ($nowEle[0].id.substr(11) == 0){
-						$('#pocketHorse'+(imgSrcLength-1)).addClass('nowHourse').css('visibility','visible');
-					}else{
-						$nowEle.prev().addClass('nowHourse').css('visibility','visible');
-					}
-					if ($nextEle[0].id.substr(11) == 0){
-						$('#pocketHorse'+(imgSrcLength-1)).addClass('nextHourse').css('visibility','hidden');
-					}else{
-						$nextEle.prev().addClass('nextHourse').css('visibility','hidden');
-					}	
-					$nowEle.removeClass('nowHourse').css('visibility','hidden');
-					$nextEle.removeClass('nextHourse').css('visibility','visible');	
-				}	
-			};
-			hourseWait();
-			
-			//转场方向，left：从右向左；right：从左到右；up：从下到上；down：从上到下
-			var nowHourseValue ;
-			var nextHourseValue ;
+		if (option.transFunction === 'transparency'){ //透明度转场方式
+			$('.imageArea img.nowHourse').css({'opacity':1,'z-index':1,'visibility':'visible'});
+			$('.imageArea img.nextHourse').css({'opacity':0,'z-index':2,'visibility':'visible'});
+		}else{//如果是slide或push转场 
 			switch (option.transDirection){
 				case 'left':
-					if (positive){
-						switch (option.transFunction){
-							case 'slide':
-								nowHourseValue = 0 +'px';
-								nextHourseValue = imgWidth +'px';
-							break;
-							case 'push':
-								nowHourseValue = 0 +'px';
-								nextHourseValue = imgWidth +'px';
-							break;
-						}
-					}else{
-						switch (option.transFunction){
-							case 'slide':
-								nowHourseValue = 0 +'px';
-								nextHourseValue = 0 +'px';
-							break;
-							case 'push':
-								nowHourseValue = -(imgWidth) +'px';
-								nextHourseValue = 0 +'px';
-							break;
-						}
-					}
-				break;
+					initNowHourse = 0 + 'px' ;
+					initNextHouse = imgWidth + 'px';
+					break;
 				case 'right':
-					if (positive){
-						switch (option.transFunction){
-							case 'slide':
-								nowHourseValue = 0 +'px';
-								nextHourseValue = -(imgWidth) +'px';
-							break;
-							case 'push':
-								nowHourseValue = 0 +'px';
-								nextHourseValue = -(imgWidth) +'px';
-							break;
-						}
-					}else{
-						switch (option.transFunction){
-							case 'slide':
-								nowHourseValue = 0 +'px';
-								nextHourseValue = 0 +'px';
-							break;
-							case 'push':
-								nowHourseValue = imgWidth +'px';
-								nextHourseValue = 0 +'px';
-							break;
-						}
-					}
-				break;
+					initNowHourse = 0 + 'px' ;
+					initNextHouse = -(imgWidth) + 'px';
+					break;
 				// case 'up':
 				// 	$('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
 				// 	$('.imageArea img.nextHourse').css({'top':imgHeight+'px','z-index':2,'visibility':'visible'});
@@ -177,27 +102,163 @@ $.fn.extend({
 				// default:
 				//     $('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
 				// 	$('.imageArea img.nextHourse').css({'left':0,'z-index':2,'visibility':'visible'});
+			}
+			$('.imageArea img.nowHourse').css({'left':initNowHourse,'z-index':1,'visibility':'visible'});
+			$('.imageArea img.nextHourse').css({'left':initNextHouse,'z-index':2,'visibility':'visible'});
+		}
+		//幻灯片动画主控制方法，第一个参数是配置值,第二个是否反向(反向按钮会用到),第三个是是否由点阵触发  
+		var hourseRunning = function(option,positive,dotNum){
+			//动画初始化，元素初处理，这里只在逆向点击时触发
+			var hourseWait = function(){
+				var $nowEle = $('img.nowHourse');
+				var $nextEle = $('img.nextHourse');
+
+				if(positive){
+				    if (option.dotControl){
+						var dotActiveNum = $('.nextHourse')[0].id.substr(11) ;
+						$('.common-carouselImage .dotWrap>span').css({'background':'url(./image/dotGray.png) 0px 0px'}) ;
+						$('.common-carouselImage .dotWrap .dot'+dotActiveNum).css({'background':'url(./image/dotGray.png) -12px 0px'}) ;
+					}
+					if (dotNum){//正向,还可能是dot控制的情况
+						$nextEle.removeClass('nextHourse').css('visibility','hidden') ; 
+						$('#pocketHorse'+dotNum).addClass('nextHourse').css('visibility','visible') ;
+						$('.common-carouselImage .dotWrap>span').css({'background':'url(./image/dotGray.png) 0px 0px'}) ;
+					    $('.common-carouselImage .dotWrap .dot'+dotNum).css({'background':'url(./image/dotGray.png) -12px 0px'}) ;
+					}
+				}else{
+					if ($nowEle[0].id.substr(11) == 0){
+						$('#pocketHorse'+(imgSrcLength-1)).addClass('nowHourse').css('visibility','visible');
+					}else{
+						$nowEle.prev().addClass('nowHourse').css('visibility','visible');
+					}
+					if ($nextEle[0].id.substr(11) == 0){
+						$('#pocketHorse'+(imgSrcLength-1)).addClass('nextHourse').css('visibility','hidden');
+					}else{
+						$nextEle.prev().addClass('nextHourse').css('visibility','hidden');
+					}	
+					$nowEle.removeClass('nowHourse').css('visibility','hidden');
+					$nextEle.removeClass('nextHourse').css('visibility','visible');
+					if (option.dotControl){
+						var dotActiveNum = $('.nowHourse')[0].id.substr(11) ;
+						$('.common-carouselImage .dotWrap>span').css({'background':'url(./image/dotGray.png) 0px 0px'}) ;
+						$('.common-carouselImage .dotWrap .dot'+dotActiveNum).css({'background':'url(./image/dotGray.png) -12px 0px'}) ;
+					}	
+				}	
 			};
-			$('.imageArea img.nowHourse').css({'left':nowHourseValue,'z-index':1,'visibility':'visible'});	
-			$('.imageArea img.nextHourse').css({'left':nextHourseValue,'z-index':2,'visibility':'visible'});
+			hourseWait();
+			
+			//转场方向，left：从右向左；right：从左到右；up：从下到上；down：从上到下
+			var nowHourseValue ;
+			var nextHourseValue ;
+			if (option.transFunction === 'transparency'){
+				if (positive){
+					$('.imageArea img.nowHourse').css({'opacity':1,'z-index':1,'visibility':'visible'});
+					$('.imageArea img.nextHourse').css({'opacity':0,'z-index':2,'visibility':'visible'});
+				}else{
+					$('.imageArea img.nowHourse').css({'opacity':1,'z-index':1,'visibility':'visible'});
+					$('.imageArea img.nextHourse').css({'opacity':1,'z-index':2,'visibility':'visible'});
+				}
+			}else{
+				switch (option.transDirection){
+					case 'left':
+						if (positive){
+							switch (option.transFunction){
+								case 'slide':
+									nowHourseValue = 0 +'px';
+									nextHourseValue = imgWidth +'px';
+								break;
+								case 'push':
+									nowHourseValue = 0 +'px';
+									nextHourseValue = imgWidth +'px';
+								break;
+							}
+						}else{
+							switch (option.transFunction){
+								case 'slide':
+									nowHourseValue = 0 +'px';
+									nextHourseValue = 0 +'px';
+								break;
+								case 'push':
+									nowHourseValue = -(imgWidth) +'px';
+									nextHourseValue = 0 +'px';
+								break;
+							}
+						}
+					break;
+					case 'right':
+						if (positive){
+							switch (option.transFunction){
+								case 'slide':
+									nowHourseValue = 0 +'px';
+									nextHourseValue = -(imgWidth) +'px';
+								break;
+								case 'push':
+									nowHourseValue = 0 +'px';
+									nextHourseValue = -(imgWidth) +'px';
+								break;
+							}
+						}else{
+							switch (option.transFunction){
+								case 'slide':
+									nowHourseValue = 0 +'px';
+									nextHourseValue = 0 +'px';
+								break;
+								case 'push':
+									nowHourseValue = imgWidth +'px';
+									nextHourseValue = 0 +'px';
+								break;
+							}
+						}
+					break;
+					// case 'up':
+					// 	$('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
+					// 	$('.imageArea img.nextHourse').css({'top':imgHeight+'px','z-index':2,'visibility':'visible'});
+					// 	break;
+					// case 'down':
+					// 	$('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
+					// 	$('.imageArea img.nextHourse').css({'left':-(imgHeight)+'px','z-index':2,'visibility':'visible'});
+					// 	break;
+					// case 'none':
+				 //    	$('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
+					// 	$('.imageArea img.nextHourse').css({'left':0,'z-index':2,'visibility':'visible'});
+					// 	break;
+					// default:
+					//     $('.imageArea img.nowHourse').css({'top':0,'z-index':1,'visibility':'visible'});
+					// 	$('.imageArea img.nextHourse').css({'left':0,'z-index':2,'visibility':'visible'});
+				};
+				$('.imageArea img.nowHourse').css({'left':nowHourseValue,'z-index':1,'visibility':'visible'});	
+				$('.imageArea img.nextHourse').css({'left':nextHourseValue,'z-index':2,'visibility':'visible'});
+			}
 			//动画结束的元素变化
 			var hourseSleep = function(){
 				var $nowEle = $('img.nowHourse');
 				var $nextEle = $('img.nextHourse');
 				if (positive){
-					if ($nextEle[0].id.substr(11) == (imgSrcLength-1)){
-						$('#pocketHorse0').addClass('nextHourse').css('visibility','hidden');
+					if (dotNum){//正向,还可能是dot控制的情况
+						if ($nextEle[0].id.substr(11) == (imgSrcLength-1)){
+							$('#pocketHorse0').addClass('nextHourse').css('visibility','visible') ;
+						}else{
+							$nextEle.next().addClass('nextHourse').css('visibility','visible') ;
+						}
+						$nextEle.removeClass('nextHourse').addClass('nowHourse') ;
+						$nowEle.removeClass('nowHourse').css('visibility','hidden') ;
 					}else{
-						$nextEle.next().addClass('nextHourse').css('visibility','hidden');
+						if ($nextEle[0].id.substr(11) == (imgSrcLength-1)){
+							$('#pocketHorse0').addClass('nextHourse').css('visibility','hidden');
+						}else{
+							$nextEle.next().addClass('nextHourse').css('visibility','hidden');
+						}
+						if ($nowEle[0].id.substr(11) == (imgSrcLength-1)){
+							$('#pocketHorse0').addClass('nowHourse').css('visibility','visible');
+						}else{
+							$nowEle.next().addClass('nowHourse').css('visibility','visible');
+						}
+						$nowEle.removeClass('nowHourse').css('visibility','hidden');
+					    $nextEle.removeClass('nextHourse').css('visibility','visible');	
+					   
 					}
-					if ($nowEle[0].id.substr(11) == (imgSrcLength-1)){
-						$('#pocketHorse0').addClass('nowHourse').css('visibility','visible');
-					}else{
-						$nowEle.next().addClass('nowHourse').css('visibility','visible');
-					}
-					$nowEle.removeClass('nowHourse').css('visibility','hidden');
-				    $nextEle.removeClass('nextHourse').css('visibility','visible');	
 				}else{
+
 					// if ($nextEle[0].id.substr(11) == 0){
 					// 	$('#pocketHorse'+(imgSrcLength-1)).addClass('nextHourse').css('visibility','hidden');
 					// }else{
@@ -212,72 +273,81 @@ $.fn.extend({
 						
 			};
 			//转场方式，slide：滑动覆盖，push：推开，transparency：透明度变化
-			switch (option.transDirection){
-				case 'left':
-					if (positive){
-						switch (option.transFunction){
-							case 'slide':
-								$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
-								$('img.nextHourse').animate({left:0,top:0},option.transTime,option.transEasying,hourseSleep);				
-							break;
-							case 'push':
-								$('img.nowHourse').animate({left:-(imgWidth)+'px',top:0},option.transTime,option.transEasying);
-								$('img.nextHourse').animate({left:0,top:0},option.transTime,option.transEasying,hourseSleep);				
-							break;
+			if (option.transFunction === 'transparency'){ //透明度动画
+				if (positive){
+					$('img.nowHourse').animate({opacity:1},option.transTime,option.transEasying);
+					$('img.nextHourse').animate({opacity:1},option.transTime,option.transEasying,hourseSleep);
+				}else{	//反向转场
+					$('img.nowHourse').animate({opacity:1},option.transTime,option.transEasying);
+					$('img.nextHourse').animate({opacity:0},option.transTime,option.transEasying,hourseSleep);
+				}
+			}else{
+				switch (option.transDirection){
+					case 'left':
+						if (positive){
+							switch (option.transFunction){
+								case 'slide':
+									$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
+									$('img.nextHourse').animate({left:0,top:0},option.transTime,option.transEasying,hourseSleep);				
+								break;
+								case 'push':
+									$('img.nowHourse').animate({left:-(imgWidth)+'px',top:0},option.transTime,option.transEasying);
+									$('img.nextHourse').animate({left:0,top:0},option.transTime,option.transEasying,hourseSleep);				
+								break;
+							}
+						}else{
+							switch (option.transFunction){
+								case 'slide':
+									$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
+									$('img.nextHourse').animate({left:(imgWidth)+'px',top:0},option.transTime,option.transEasying,hourseSleep);				
+								break;
+								case 'push':
+									$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
+									$('img.nextHourse').animate({left:imgWidth+'px',top:0},option.transTime,option.transEasying,hourseSleep);				
+								break;
+							}		
 						}
-					}else{
-						switch (option.transFunction){
-							case 'slide':
-								$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
-								$('img.nextHourse').animate({left:(imgWidth)+'px',top:0},option.transTime,option.transEasying,hourseSleep);				
-							break;
-							case 'push':
-								$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
-								$('img.nextHourse').animate({left:imgWidth+'px',top:0},option.transTime,option.transEasying,hourseSleep);				
-							break;
-						}		
-					}
-				break;
-				case 'right':
-					if (positive){
-						switch (option.transFunction){
-							case 'slide':
-								$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
-								$('img.nextHourse').animate({left:0,top:0},option.transTime,option.transEasying,hourseSleep);				
-							break;
-							case 'push':
-								$('img.nowHourse').animate({left:imgWidth+'px',top:0},option.transTime,option.transEasying);
-								$('img.nextHourse').animate({left:0,top:0},option.transTime,option.transEasying,hourseSleep);				
-							break;
+					break;
+					case 'right':
+						if (positive){
+							switch (option.transFunction){
+								case 'slide':
+									$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
+									$('img.nextHourse').animate({left:0,top:0},option.transTime,option.transEasying,hourseSleep);				
+								break;
+								case 'push':
+									$('img.nowHourse').animate({left:imgWidth+'px',top:0},option.transTime,option.transEasying);
+									$('img.nextHourse').animate({left:0,top:0},option.transTime,option.transEasying,hourseSleep);				
+								break;
+							}
+						}else{
+							switch (option.transFunction){
+								case 'slide':
+									$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
+									$('img.nextHourse').animate({left:-(imgWidth)+'px',top:0},option.transTime,option.transEasying,hourseSleep);				
+								break;
+								case 'push':
+									$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
+									$('img.nextHourse').animate({left:-(imgWidth)+'px',top:0},option.transTime,option.transEasying,hourseSleep);				
+								break;
+							}		
 						}
-					}else{
-						switch (option.transFunction){
-							case 'slide':
-								$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
-								$('img.nextHourse').animate({left:-(imgWidth)+'px',top:0},option.transTime,option.transEasying,hourseSleep);				
-							break;
-							case 'push':
-								$('img.nowHourse').animate({left:0,top:0},option.transTime,option.transEasying);
-								$('img.nextHourse').animate({left:-(imgWidth)+'px',top:0},option.transTime,option.transEasying,hourseSleep);				
-							break;
-						}		
-					}
-				break;
-				// case 'transparency':
-				// 	$('img.nextHourse').animate({opacity:1},option.transTime,'swing');
-				// 	$('img.nextHourse').animate({opacity:1},option.transTime,'swing',hourseSleep);
-				// 	break;
-				// default: 
-				// 	$('img.nextHourse').animate({opacity:1},option.transTime,'swing');
-				// 	$('img.nextHourse').animate({opacity:1},option.transTime,'swing',hourseSleep);
-			}
-			
+					break;
+					// case 'transparency':
+					// 	$('img.nextHourse').animate({opacity:1},option.transTime,'swing');
+					// 	$('img.nextHourse').animate({opacity:1},option.transTime,'swing',hourseSleep);
+					// 	break;
+					// default: 
+					// 	$('img.nextHourse').animate({opacity:1},option.transTime,'swing');
+					// 	$('img.nextHourse').animate({opacity:1},option.transTime,'swing',hourseSleep);
+				}
+			}			
 		}
 
 		//创建一个函数，用于返回一个无参数函数,用来在定时器中使用带参数的函数
-		function _hourseRunning(option,positive){
+		function _hourseRunning(option,positive,dotCtrlNum){
 		       return function(){
-		              hourseRunning(option,positive);
+		              hourseRunning(option,positive,dotCtrlNum);
 		       }
 		}
 		//默认定时器，初始化启动，在点击dot或block后移除，被新的定时器取代
@@ -320,6 +390,23 @@ $.fn.extend({
 				$('.carousRightArr').css({'transition': 'right 0.3s ease 0s'});
 				$('.carousRightArr').css({'right':'-60px'});
 			});	
+		}else{
+
+		}
+		//点阵控制事件
+		if (option.dotControl){
+			$('.common-carouselImage .dotWrap>span').on('click',function(event){		
+				var eventJQ = $.event.fix(event || window.event);
+				var $eventTargte = $(eventJQ.target) ;
+				var dotNum = $(eventJQ.target).attr('class').substr(3) ;
+				if($('.imageArea img').is(":animated")){
+					return false;
+				} else{
+					hourseRunning(option,true,dotNum);//触发一次正向跳转到指定dot点的动画
+				}
+				window.clearInterval(defaultTimer);	
+				defaultTimer = setInterval(_hourseRunning(option,true),option.stayTime+option.transTime) ;		
+			})
 		}else{
 
 		}
