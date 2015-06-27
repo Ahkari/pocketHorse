@@ -1,0 +1,79 @@
+/*轮播图样式*/
+@charset "utf-8";
+
+*{
+	padding: 0px;
+	margin: 0px;
+}
+body{
+	background: #121212;
+}
+a{
+    color: #252525;
+    outline: none;
+    text-decoration: none;
+}
+.pa{
+    position: absolute;
+}
+.w1100{
+    width: 1100px 
+} 
+.margin-center{
+	margin : 0px auto;
+}
+.iconLeft {
+    display: inline-block;
+    width: 53px;
+    height: 53px;
+    background: url(./image/icon-big.png) -127px -126px no-repeat;
+    transition: background 0.2s ease 0s;
+}
+.iconLeft:hover {
+    background: url(./image/icon-big.png) -181px -126px no-repeat;
+}
+.iconRight {
+    display: inline-block;
+    width: 53px;
+    height: 53px;
+    background: url(./image/icon-big.png) -182px -63px no-repeat;
+    transition: background 0.2s ease 0s;
+}
+.iconRight:hover {
+    background: url(./image/icon-big.png) -127px -63px no-repeat;
+}
+/*导航组件样式*/
+/*height 80px,一般在页面的顶部*/
+/*轮播图样式*/
+.common-carouselImage{
+	position: relative;
+	width: 1100px;
+	height: 415px;
+}
+.imageArea{
+	width: 1100px;
+	height: 415px;
+	background: #dadada;
+}
+.common-carouselImage>.carousLeftArr{
+	width: 55px;
+	height: 55px;
+	top: 180px;
+	left:-60px;
+}
+.common-carouselImage>.carousRightArr{
+	width: 55px;
+	height: 55px;
+	top: 180px;
+	right: -60px;
+}
+.common-carouselImage .carousLeftArr{
+	cursor: pointer;
+}
+.common-carouselImage .carousRightArr{
+	cursor: pointer;
+}
+.common-carouselImage .imageArea img{
+	width: 100%;
+	/*height: 100%;*/
+}
