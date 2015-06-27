@@ -1,4 +1,4 @@
-﻿/*顶部样式以及公共组件样式*/
+/*轮播图样式*/
 @charset "utf-8";
 
 *{
@@ -6,7 +6,7 @@
 	margin: 0px;
 }
 body{
-	background: #151515;
+	background: #121212;
 }
 a{
     color: #252525;

@@ -1,0 +1,68 @@
+﻿/*index page样式*/
+body{
+    overflow: hidden;
+}
+.title{
+	position: relative;
+	width: 1100px;
+	margin: 0px auto;
+	background: #272727;
+	transition: all 0.8s ease 0s;
+    -webkit-transition: all 0.8s ease 0s;
+    -moz-transition: all background-color 0.8s ease 0s;
+    -o-transition: all background-color 0.8s ease 0s;
+    -ms-transition: all background-color 0.8s ease 0s;
+}
+.model{
+	width: 1100px;
+	margin: 0px auto;
+	background: #1c1c1c;
+	transition: background-color 0.8s ease 0s;
+    -webkit-transition: background-color 0.8s ease 0s;
+    -moz-transition: background-color background-color 0.8s ease 0s;
+    -o-transition: background-color background-color 0.8s ease 0s;
+    -ms-transition: background-color background-color 0.8s ease 0s;
+}
+.logo{
+	position: absolute;
+	transition: all 0.8s ease 0s;
+    -webkit-transition: all 0.8s ease 0s;
+    -moz-transition: all background-color 0.8s ease 0s;
+    -o-transition: all background-color 0.8s ease 0s;
+    -ms-transition: all background-color 0.8s ease 0s;
+}
+.info{
+	position: absolute;
+	left: 550px;
+	top: 250px;
+	opacity: 0
+}
+.info2{
+	position: absolute;
+	left: 678px;
+	top: 300px;
+	opacity: 0
+}
+.viewBtn{
+	opacity: 0;
+	float: right;
+    color: #bababa;
+    width: 130px;
+    text-align: center;
+    height: 30px;
+    margin-top: 9px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: "Microsoft JhengHei"," Microsoft YaHei";
+    margin-right: 12px;
+    line-height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+.viewBtn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
