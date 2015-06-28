@@ -8,7 +8,17 @@ $(function(){
 	$('.logo').css({'height':'148px' , 'left':70 ,'top': 40 })
 	$('.viewBtn').css({'visibility':'hidden'});
 	//初始化动画
-	infoShow();
+	infoShow(function(){
+		$('.title').css({'height' : '50px','background-color':'#1c1c1c'});
+		$('.model').css({'background-color':'#272727'});
+
+		$('.logo').css({'height':'50px' , 'left':0 ,'top':0});
+		$('.viewBtn').css({'visibility':'visible'});
+		$('.viewBtn').css({'opacity':'1'});
+
+		infoHide();
+	});
+
 
 
 	// using the event helper  
@@ -162,7 +172,7 @@ $(function(){
 
 })
 
-function infoShow(){
+function infoShow(callback){
 	setTimeout(function(){
 		$('.info').animate({
 			opacity: 0.8,
@@ -172,7 +182,7 @@ function infoShow(){
 			/* stuff to do after animation is complete */
 			$('.info2').animate({opacity: 0.8, left: 728}, 
 			1600,
-			'easeOutQuad');
+			'easeOutQuad',callback);
 		});
 	},0);
 }
