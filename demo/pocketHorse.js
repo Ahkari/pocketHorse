@@ -1,6 +1,9 @@
 //轮播插件created by qzguo 15/6/22
 //使用方法：$(selector).pocketHorse(option,imageSrc)
 $.fn.extend({
+	//默认定时器
+	defaultTimer : null,
+
 	pocketHorse : function(option,imageSrc){
 		//初始化
 		$('.imageArea').css('overflow','hidden').css('position','relative');
@@ -286,6 +289,9 @@ $.fn.extend({
 			var HorseSleep = function(){
 				var $nowEle = $('.imageArea .nowHorse');
 				var $nextEle = $('.imageArea .nextHorse');
+				if (!$nextEle[0] || !$nowEle[0]){
+					return false;
+				}
 				if (positive){
 					if (dotNum){//正向,还可能是dot控制的情况
 						if ($nextEle[0].id.substr(11) == (imgSrcLength-1)){
@@ -432,7 +438,7 @@ $.fn.extend({
 		       }
 		}
 		//默认定时器，初始化启动，在点击dot或block后移除，被新的定时器取代
-		var defaultTimer = setInterval(_HorseRunning(option,true),option.stayTime+option.transTime) ;
+		defaultTimer = setInterval(_HorseRunning(option,true),option.stayTime+option.transTime) ;
 
 		//click绑定事件，向右按键点一次触发一次正向动作
 		$('.carousRightArr').on('click',function(e){
@@ -494,5 +500,10 @@ $.fn.extend({
 		}else{
 
 		}
+
+		//清除定时器方法,必须
+
+		return defaultTimer;
+
 	}
 });

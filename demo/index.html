@@ -3,11 +3,25 @@
 <head>
 	<meta charset="utf-8">
 	<title>pocketHorse*旋转木马</title>
-	<meta content="这里写关键字" name="Keywords">
-	<meta content="这里写介绍" name="Description">
+	<meta content="轮播,幻灯片,插件,jQuery,旋转木马,pocketHorse,动画,转场" name="Keywords">
+	<meta content="一款支持多种转场模式的基于jQuery的轮播图插件,内置六种专场方式,能满足大部分网站轮播需要.元素操作逻辑与动画实现方法分离,能向后扩展其他转场方式.是一款酷炫简约而且有逼格的入门级轮播插件!能为你的网站增色不少!" name="Description">
 	<link type="text/css" rel="stylesheet" href="./pocketHorse.css">
 	<link type="text/css" rel="stylesheet" href="./index.css">
 	<link href="http://www.youziku.com/webfont/NameCSS/46954" rel="stylesheet">
+	<link href='http://www.youziku.com/webfont/CSS/98cb8a1386b12b2d9c014e57650a6f6f' rel='stylesheet' type='text/css'/>
+	<style>
+		.aboutMain p.css46954{
+			color: rgba(255, 105, 105, 1);
+		  	font-size: 25px;
+  			letter-spacing: 2px;
+  			line-height: 38px;
+  		}
+  		.aboutMain p.css46954.singer{
+  			color: rgba(255, 196, 105, 0.85);
+  			font-size: 18px;
+  			letter-spacing: 0px;
+  		}
+	</style>
 </head>
 <body>
 
@@ -30,7 +44,10 @@
 	<img src="./image/info2.png" class="info2">
 	<a class="viewBtn" href="https://github.com/Ahkari/pocketHorse/zipball/master">Download .zip</a>
 	<a class="viewBtn" href="https://github.com/Ahkari/pocketHorse">View on GitHub</a>
-	<div style="clear:both" />
+	<div style="clear:both"></div>
+	<!-- <span class="button-next">
+		<span class="button-next-icon"></span>
+	</span> -->
 </section>
 <section class="model">
 	<div class="tab">
@@ -44,27 +61,27 @@
 		<div class="chooseMain">
 			<div class="transModel2 outline">
 			</div>
-			<div class="transModel adv-sr">
+			<div class="transModel adv-sr" data-model="adv-scaleRotate">
 				<img src="./image/transfunc5.png">
 				<p class="list-active">高级模式: adv-scaleRotate</p>
 			</div>
-			<div class="transModel adv-s">
+			<div class="transModel adv-s" data-model="adv-scale">
 				<img src="./image/transfunc4.png">
 				<p>高级模式: adv-scale</p>
 			</div>
-			<div class="transModel adv-ff">
+			<div class="transModel adv-ff" data-model="adv-fragmentFly">
 				<img src="./image/transfunc6.png">
 				<p>高级模式: adv-fragmentFly</p>
 			</div>
-			<div class="transModel s">
+			<div class="transModel s" data-model="slide">
 				<img src="./image/transfunc1.png">
 				<p>普通模式: slide</p>
 			</div>
-			<div class="transModel p">
+			<div class="transModel p" data-model="push">
 				<img src="./image/transfunc2.png">
 				<p>普通模式: push</p>
 			</div>
-			<div class="transModel t">
+			<div class="transModel t" data-model="transparency">
 				<img src="./image/transfunc3.png">
 				<p>普通模式: transparency</p>	
 			</div>
@@ -106,12 +123,12 @@
 			<p class="aboutMainTitle">关于插件</p>
 			<p>1.slide和push使用jquery.animate实现,追求的是位移转场的连续性,方向目前只设置了left和right,曲线支持animate原生和easing插件</p>
 			<p>2.高级转场adv-scaleRotate,adv-scale和transparency基于css实现,没有转场方向,曲线完整支持css属性transition</p>
-			<p>3.高级转场adv-fragmentFly基于个人碎片动画插件fragmentFly实现<a href="http://ahkari.github.io/fragmentFly/">fragmentFly</a>,取消前一张/下一站张的控制按钮,支持left/right/up/down四个方向,分割量可在插件内部自行修改,但是高密度分割下需要注意性能问题</p>
+			<p>3.高级转场adv-fragmentFly基于个人碎片动画插件<a href="http://ahkari.github.io/fragmentFly/" style="color:#6D96C5">fragmentFly</a>实现,取消前一张/下一站张的控制按钮,支持left/right/up/down四个方向,分割量可在插件内部自行修改,但是高密度分割下需要注意性能问题</p>
 			<p class="aboutMainTitle me">关于偶</p>
-			<p class="css46954">"With you these streets are heaven,
-			<p class="css46954">	&nbsp;&nbsp;&nbsp;&nbsp;Now home feels so foreign"</p>
-			<p class="css46954">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Exodus '04 &nbsp;&nbsp;宇多田ヒカル</p>
-			<p>其实这就是凑字数的,惯例放图标</p>
+			<p class="css46954" style="text-indent: 26%;">"With you these streets are heaven,
+			<p class="css46954" style="text-indent: 13%;">	&nbsp;&nbsp;&nbsp;&nbsp;Now home feels so foreign"</p>
+			<p class="css46954 singer" style="text-indent: 50%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Exodus '04 &nbsp;&nbsp;<span style="font-family:bykaishu7000345654;">宇多田ヒカル</span></p>
+			<p class="aboutMainTitle" style="opacity:0.4;">其实这上面就是凑版面的,不要去听这歌,虽然很好听,下面惯例放图标</p>
 			<div class="wrap_bottom_inside">
 				<a><i class="iconfont">&#xf01c7;<span class="qqInfo">825584053</span></i></a>
 				<a href="http://weibo.com/ahkari/" target="_blank"><i class="iconfont">&#xf01af;</i></a>
