@@ -167,14 +167,14 @@ function infoShow(){
 		$('.info').animate({
 			opacity: 0.8,
 			left: 600},
-			1000,
+			1400,
 			'easeOutQuad', function() {
 			/* stuff to do after animation is complete */
 			$('.info2').animate({opacity: 0.8, left: 728}, 
-			1200,
+			1600,
 			'easeOutQuad');
 		});
-	},700);
+	},0);
 }
 function infoHide(){
 	$('.info').animate({

@@ -332,3 +332,71 @@ body{
 .wrap_bottom_inside>a:nth-child(3) i:hover {
     color: #9038AA;
 }
+/*title下的下一个按钮*/
+/*.button-next{
+    -webkit-animation: fadein .8s ease-in 2.9s 1 forwards,arrow 1s ease 3.5s infinite alternate;
+    -moz-animation: fadein .8s ease-in 2.9s 1 forwards,arrow 1s ease 3.5s infinite alternate;
+    -ms-animation: fadein .8s ease-in 2.9s 1 forwards,arrow 1s ease 3.5s infinite alternate;
+    -o-animation: fadein .8s ease-in 2.9s 1 forwards,arrow 1s ease 3.5s infinite alternate;
+    animation: fadein .8s ease-in 2.9s 1 forwards,arrow 1s ease 3.5s infinite alternate;
+}
+.button-next {
+    width: 128px;
+    height: 64px;
+    position: absolute;
+    bottom: 85px;
+    z-index: 1;
+    text-align: center;
+    cursor: pointer;
+    background: url(http://liulanqi.baidu.com/mainsite/theme/images/home/bg-scroll-arrow_95a71ba.png) no-repeat center bottom;
+    opacity: 1;
+    margin-left: -64px;
+    left: 50%;
+}
+.button-next-icon {
+    width: 100%;
+    height: 24px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+@-webkit-keyframes fadein {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+@-moz-keyframes fadein {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+@-ms-keyframes fadein {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+@-o-keyframes fadein {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+@keyframes fadein {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}*/
