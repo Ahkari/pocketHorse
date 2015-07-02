@@ -191,7 +191,7 @@
       jQuery('.progress span').css('width',((sum-l)/sum)*96+"%").text(Math.floor(((sum-l)/sum)*100)+"%");
 
 
-      if (l==0){  
+      if (l<=4){  
          //图片全部加载完成，显示页面， 隐藏漂浮层， 删除进度条  
          $('.common-carouselImage').pocketHorse({
 			dotControl : true ,
