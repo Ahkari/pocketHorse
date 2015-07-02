@@ -144,6 +144,12 @@
 	<div style="clear:both" />
 </section>
 <script type="text/javascript" src="./libs/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+	var height = $(window).height();  
+    var width = $(window).width();  
+
+    $('.progress').css({"margin-top":(height-20)/2});
+</script>
 <script type="text/javascript" src="./libs/jquery.easing.min.js"></script>
 <script type="text/javascript" src="./libs/jquery.mousewheel.min.js"></script>
 <script type="text/javascript" src="./libs/jquery.fragmentFly.js"></script>
@@ -155,11 +161,6 @@
     var imgs;  
     var sum=0;  
     var imgs=new Array();  
-
-    var height = $(window).height();  
-    var width = $(window).width();  
-
-    $('.progress').css({"margin-top":(height-20)/2});
 
 	if (document.images){  
         imgs[0]=new Image();  
@@ -187,7 +188,7 @@
     function chk(){  
       l--;
       console.log(l);  
-      jQuery('.progress span').css('width',((sum-l)/sum)*96+"%").text(((sum-l)/sum)*100+"%");
+      jQuery('.progress span').css('width',((sum-l)/sum)*96+"%").text(Math.floor(((sum-l)/sum)*100)+"%");
 
 
       if (l==0){  
@@ -218,7 +219,7 @@
 		]
 		);
 
-         $('.layout').hide();
+         $('.layout').animate({'opacity':0},800,'linear',function(){});
 
             
       }  
