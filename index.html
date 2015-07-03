@@ -154,7 +154,7 @@
 <script type="text/javascript" src="./libs/jquery.mousewheel.min.js"></script>
 <script type="text/javascript" src="./libs/jquery.fragmentFly.js"></script>
 <script type="text/javascript" src="./pocketHorse.js"></script>
-<script type="text/javascript" id="lazyLoad" src="./js/index.js"></script>
+<!-- <script type="text/javascript" id="lazyLoad" src="./js/index.js"></script> -->
 <script>
 //dom ready
 // (function($){
@@ -197,9 +197,7 @@
          
         //$('#lazyLoad').attr("src","./js/index.js");
         // document.write('<script src="./js/index.js"><\/script>');
-        $('.layout').animate({'opacity':0},800,'linear',function(){
-        	$(this).hide();
-        });
+        
         $('.common-carouselImage').pocketHorse({
 			dotControl : true ,
 			blockControl : true ,
@@ -225,25 +223,12 @@
 			'./image/Wallpaper_1236.jpg'
 		]
 		);
-		var winHeight = $(window).height() ;
-		var headerHeight = $('.header').height() ; 
-		var titleHeight = winHeight - headerHeight ;
-		$('.title').css({'height':titleHeight});
-		// $('.model').css({'height':titleHeight - 50});
-		$('.logo').css({'height':'148px' , 'left':70 ,'top': 40 })
-		$('.viewBtn').css({'visibility':'hidden'});
-		//初始化动画
-		infoShow(function(){
-			$('.title').css({'height' : '50px','background-color':'#1c1c1c'});
-			$('.model').css({'background-color':'#272727'});
-
-			$('.logo').css({'height':'50px' , 'left':0 ,'top':0});
-			$('.viewBtn').css({'visibility':'visible'});
-			$('.viewBtn').css({'opacity':'1'});
-
-			infoHide();
-		});           
-      }  
+		$.getScript('./js/index.js',function(){
+			$('.layout').animate({'opacity':0},800,'linear',function(){
+        		$(this).hide();
+        	});
+        });
+	  }    
     }  	
 // })(jQuery)
 </script>
