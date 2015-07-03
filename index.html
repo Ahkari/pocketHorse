@@ -193,7 +193,13 @@
 
       if (l<1){  
          //图片全部加载完成，显示页面， 隐藏漂浮层， 删除进度条  
-         $('.common-carouselImage').pocketHorse({
+         
+        //$('#lazyLoad').attr("src","./js/index.js");
+        // document.write('<script src="./js/index.js"><\/script>');
+        $('.layout').animate({'opacity':0},800,'linear',function(){
+        	$(this).hide();
+        });
+        $('.common-carouselImage').pocketHorse({
 			dotControl : true ,
 			blockControl : true ,
 			isControlerHide : true ,
@@ -217,16 +223,11 @@
 			'./image/umberalla.jpg',
 			'./image/Wallpaper_1236.jpg'
 		]
-		);
-
-         $('.layout').animate({'opacity':0},800,'linear',function(){});
-
-            
+		);           
       }  
-    }    
-	
+    }  	
 // })(jQuery)
 </script>
-<script type="text/javascript" src="./js/index.js"></script>
+<script type="text/javascript" id="lazyLoad" src="./js/index.js"></script>
 </body>
 </html>
