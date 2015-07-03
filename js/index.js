@@ -4,7 +4,7 @@ $(function(){
 	var headerHeight = $('.header').height() ; 
 	var titleHeight = winHeight - headerHeight ;
 	$('.title').css({'height':titleHeight});
-	$('.model').css({'height':titleHeight - 50});
+	// $('.model').css({'height':titleHeight - 50});
 	$('.logo').css({'height':'148px' , 'left':70 ,'top': 40 })
 	$('.viewBtn').css({'visibility':'hidden'});
 	//初始化动画

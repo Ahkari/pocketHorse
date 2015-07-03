@@ -8,7 +8,7 @@
 	<link type="text/css" rel="stylesheet" href="./pocketHorse.css">
 	<link type="text/css" rel="stylesheet" href="./index.css">
 	<link href="http://www.youziku.com/webfont/NameCSS/46954" rel="stylesheet">
-	<link href='http://www.youziku.com/webfont/CSS/98cb8a1386b12b2d9c014e57650a6f6f' rel='stylesheet' type='text/css'/>
+	<!-- <link href='http://www.youziku.com/webfont/CSS/98cb8a1386b12b2d9c014e57650a6f6f' rel='stylesheet' type='text/css'/> -->
 	<style>
 		.aboutMain p.css46954{
 			color: rgba(255, 105, 105, 1);
@@ -156,7 +156,7 @@
 <script type="text/javascript" src="./pocketHorse.js"></script>
 <script>
 //dom ready
-(function($){
+// (function($){
 	var l=0;  
     var imgs;  
     var sum=0;  
@@ -187,11 +187,11 @@
     }
     function chk(){  
       l--;
-      console.log(l);  
+      
       jQuery('.progress span').css('width',((sum-l)/sum)*96+"%").text(Math.floor(((sum-l)/sum)*100)+"%");
 
 
-      if (l<=4){  
+      if (l<1){  
          //图片全部加载完成，显示页面， 隐藏漂浮层， 删除进度条  
          $('.common-carouselImage').pocketHorse({
 			dotControl : true ,
@@ -225,7 +225,7 @@
       }  
     }    
 	
-})(jQuery)
+// })(jQuery)
 </script>
 <script type="text/javascript" src="./js/index.js"></script>
 </body>
