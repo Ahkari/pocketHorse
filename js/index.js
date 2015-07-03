@@ -1,6 +1,25 @@
 //页面初始化
 $(function(){
-	
+	var winHeight = $(window).height() ;
+	var headerHeight = $('.header').height() ; 
+	var titleHeight = winHeight - headerHeight ;
+	$('.title').css({'height':titleHeight});
+	// $('.model').css({'height':titleHeight - 50});
+	$('.logo').css({'height':'148px' , 'left':70 ,'top': 40 })
+	$('.viewBtn').css({'visibility':'hidden'});
+	//初始化动画
+
+
+	infoShow(function(){
+		$('.title').css({'height' : '50px','background-color':'#1c1c1c'});
+		$('.model').css({'background-color':'#272727'});
+
+		$('.logo').css({'height':'50px' , 'left':0 ,'top':0});
+		$('.viewBtn').css({'visibility':'visible'});
+		$('.viewBtn').css({'opacity':'1'});
+
+		infoHide();
+	}); 
 
 
 
